@@ -42,7 +42,6 @@ public class EtudiantDao implements IEtudiantDao {
 		ps.setString(3, e.getPrenom());
 		ps.setString(4, e.getFiliere());
 		ps.executeUpdate(); // maybe we want to check the return value
-		//what do u mean spolaya molaya
 	}
 
 	@Override
