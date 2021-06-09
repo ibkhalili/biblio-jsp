@@ -7,7 +7,7 @@
 <title>Ajouter Etudiant</title>
 </head>
 <body>
-<form method="POST" action='EtudiantHandler' name="formAddEtudiant">
+<form method="POST" action='/biblio/EtudiantHandler' name="formAddEtudiant">
 <input type="hidden" name="action" value="insert" />
 <p><b>Ajouter un nouveau Etudiant</b></p>
 <table>

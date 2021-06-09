@@ -52,4 +52,10 @@ public class Emprunt {
 		this.numero = numero;
 	}
 
+	@Override
+	public String toString() {
+		return "Emprunt [numero=" + numero + ", numero_livre=" + numero_livre + ", cin_etudiant=" + cin_etudiant
+				+ ", date=" + date + ", remis_le=" + remis_le + "]";
+	}
+
 }

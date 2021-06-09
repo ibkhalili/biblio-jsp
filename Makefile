@@ -26,12 +26,12 @@ web:
 	docker run --name $(DOCKER_APP) -p 8080:8080 $(BIBLIO_APP)
 
 clean:
-	sudo docker stop $(DOCKER_APP)
-	sudo docker rm $(DOCKER_APP)
 	sudo docker stop $(DOCKER_MYSQL)
 	sudo docker rm $(DOCKER_MYSQL)
 	sudo docker stop $(DOCKER_PHPMYADMIN)
 	sudo docker rm $(DOCKER_PHPMYADMIN)
+	sudo docker stop $(DOCKER_APP)
+	sudo docker rm $(DOCKER_APP)
 
 fclean: clean
 

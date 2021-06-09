@@ -7,7 +7,7 @@
 <title>Ajouter livre</title>
 </head>
 <body>
-<form method="POST" action='LivreHandler' name="formAddLivre">
+<form method="POST" action='/biblio/LivreHandler' name="formAddLivre">
 <input type="hidden" name="action" value="insert" />
 <p><b>Ajouter un nouveau livre</b></p>
 <table>

@@ -24,6 +24,7 @@ public class EmpruntDao implements IEmpruntDao {
 
 		while (rs.next()) {
 			Emprunt emp = new Emprunt();
+			emp.setNumero(rs.getInt("numero"));
 			emp.setNumero_livre(rs.getInt("numero_livre"));
 			emp.setCin_etudiant(rs.getString("cin_etudiant"));
 			emp.setDate(rs.getDate("date"));
@@ -87,6 +88,15 @@ public class EmpruntDao implements IEmpruntDao {
 	@Override
 	public void supprimer(Number numero) throws SQLException {
 		// TODO Auto-generated method stub
+		String query = "delete from emprunt where numero=?";
+		PreparedStatement ps = con.prepareStatement(query);
+		ps.setInt(1, numero.intValue());
+		ps.executeUpdate();
+	}
+
+	@Override
+	public void emprunter(Number numero) throws SQLException {
+		// TODO Auto-generated method stub
 		LivreDao livreDao = new LivreDao();
 
 		Emprunt emprunt = getEmpruntById(numero);
@@ -96,12 +106,6 @@ public class EmpruntDao implements IEmpruntDao {
 		updatedLivre.setStock(updatedLivre.getStock().intValue() + 1);
 
 		livreDao.modifier(updatedLivre);
-
-		// usual process:
-		// String query = "delete from emprunt where numero=?";
-		// PreparedStatement ps = con.prepareStatement(query);
-		// ps.setInt(1, numero.intValue());
-		// ps.executeUpdate();
 	}
 
 	@Override
@@ -130,7 +134,7 @@ public class EmpruntDao implements IEmpruntDao {
 		ResultSet rs = ps.executeQuery();
 		List<Emprunt> ls = new ArrayList<Emprunt>();
 
-		if (rs.next()) {
+		while (rs.next()) {
 			Emprunt emp = new Emprunt();
 			emp.setNumero(rs.getInt("numero"));
 			emp.setNumero_livre(rs.getInt("numero_livre"));

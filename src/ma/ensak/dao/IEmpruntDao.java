@@ -11,5 +11,6 @@ public interface IEmpruntDao {
 	void modifier(Emprunt e) throws SQLException;
 	void supprimer(Number numero) throws SQLException;
 	public Emprunt getEmpruntById(Number numero) throws SQLException;
+	void emprunter(Number numero) throws SQLException;
 
 }

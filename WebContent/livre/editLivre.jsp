@@ -26,7 +26,7 @@
 	<tr>
 		<td>numero</td>
 		<td><input type="text" name="numero" readonly="readonly"
-			value="<%=livre.getNumero()%>"></td>
+			value="<%=livre.getNumero()%>"/></td>
 	</tr>
 	<tr>
 		<td>titre</td>
