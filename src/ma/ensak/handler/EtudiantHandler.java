@@ -53,17 +53,12 @@ public class EtudiantHandler extends HttpServlet {
 			}else if (action.equalsIgnoreCase("editform")){        	
 				redirect = Edit;            
 			} else if (action.equalsIgnoreCase("edit")){
-				
-				//String numeroStr = request.getParameter("numero");
-				//System.out.println("numeroStr: " + numeroStr);
 				Etudiant etudiant = new Etudiant();
-				// etudiant.setNumero(Integer.parseInt(numeroStr));
-				// !!
-				etudiant.setNom(request.getParameter("Nom"));
-				etudiant.setPrenom(request.getParameter("Prenom"));
+				etudiant.setNumero(Integer.parseInt(request.getParameter("cin")));
+				etudiant.setNom(request.getParameter("nom"));
+				etudiant.setPrenom(request.getParameter("prenom"));
 				etudiant.setFiliere(request.getParameter("filiere"));
 				dao.modifier(etudiant);
-				System.out.println("etudiant: " + etudiant);
 				request.setAttribute("etudiant", etudiant);
 				redirect = EtudiantList;
 				System.out.println("Etudiant updated Successfully");
