@@ -31,7 +31,6 @@ public class LivreHandler extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String redirect="";
 		String action = request.getParameter("action");
-		System.out.println("action: " + action);
 		try {
 			if(action.equalsIgnoreCase("insert"))
 			{
@@ -56,7 +55,6 @@ public class LivreHandler extends HttpServlet {
 			} else if (action.equalsIgnoreCase("edit")){
 				
 				String numeroStr = request.getParameter("numero");
-				System.out.println("numeroStr: " + numeroStr);
 				Livre livre = new Livre();
 				livre.setNumero(Integer.parseInt(numeroStr));
 				livre.setTitre(request.getParameter("titre"));
@@ -64,7 +62,6 @@ public class LivreHandler extends HttpServlet {
 				livre.setDate_apparition(new Date(request.getParameter("date_apparition")));
 				livre.setStock(Integer.parseInt(request.getParameter("stock")));
 				dao.modifier(livre);
-				System.out.println("livre: " + livre);
 				request.setAttribute("livre", livre);
 				redirect = LivreList;
 				System.out.println("Livre updated Successfully");
