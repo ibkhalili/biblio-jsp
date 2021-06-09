@@ -33,6 +33,6 @@
 	</tr>
 </table>
 </form>
-<p><a href="EtudiantHandler?action=listEtudiant">Liste des Etudiants</a></p>
+<p><a href="/biblio/EtudiantHandler?action=listEtudiant">Liste des Etudiants</a></p>
 </body>
 </html>

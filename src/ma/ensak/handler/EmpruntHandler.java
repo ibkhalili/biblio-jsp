@@ -18,9 +18,9 @@ public class EmpruntHandler extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static String INSERT = "/Emprunt.jsp";
-	private static String Edit = "/editEmprunt.jsp";
-	private static String EmpruntList = "/listEmprunt.jsp";
+	private static String INSERT = "/emprunt/newEmprunt.jsp";
+	private static String Edit = "/emprunt/editEmprunt.jsp";
+	private static String EmpruntList = "/emprunt/listEmprunt.jsp";
 	private EmpruntDao dao;
 
 	public EmpruntHandler() {
@@ -54,8 +54,8 @@ public class EmpruntHandler extends HttpServlet {
 				redirect = EmpruntList;
 				request.setAttribute("emprunts", dao.Lister());
 				System.out.println(" Deleted Successfully");
-				*/
-			}else if (action.equalsIgnoreCase("editform")){        	
+				
+			}*/else if (action.equalsIgnoreCase("editform")){        	
 				redirect = Edit;            
 			} else if (action.equalsIgnoreCase("edit")){
 				
@@ -63,17 +63,16 @@ public class EmpruntHandler extends HttpServlet {
 				System.out.println("numeroStr: " + numeroStr);
 				Emprunt emp = new Emprunt();
 				emp.setNumero(Integer.parseInt(numeroStr));
-				emp.setNumero_livre(request.getParameter("numero"));
-				emp.setNumero_edition(request.getParameter("numero_edition"));
-				livre.setDate_apparition(new Date(request.getParameter("date_apparition")));
-				livre.setStock(Integer.parseInt(request.getParameter("stock")));
-				dao.modifier(livre);
-				System.out.println("livre: " + livre);
-				request.setAttribute("livre", livre);
-				redirect = LivreList;
+				emp.setNumero_livre(Integer.parseInt(request.getParameter("numero")));
+				emp.setDate(new Date(request.getParameter("date")));
+				emp.setRemis_le(new Date(request.getParameter("remis_le")));
+				emp.setCin_etudiant(request.getParameter("cin_etudiant"));
+				dao.modifier(emp);
+				request.setAttribute("emprunt", emp);
+				redirect = EmpruntList;
 				System.out.println("Livre updated Successfully");
 			} else if (action.equalsIgnoreCase("listLivre")){
-				redirect = LivreList;
+				redirect = EmpruntList;
 				request.setAttribute("livres", dao.Lister());
 			} else {
 				redirect = INSERT;

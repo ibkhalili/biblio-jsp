@@ -30,15 +30,16 @@
 		<td><%=etudiant.getFiliere() %></td>
 		<td><%=etudiant.getCin() %></td>
 		<td><a
-			href="EtudiantHandler?action=editform&cin=<%=etudiant.getCin()%>">Modifier</a></td>
+			href="/biblio/EtudiantHandler?action=editform&cin=<%=etudiant.getCin()%>">Modifier</a></td>
 		<td><a
-			href="EtudiantHandler?action=delete&cin=<%=etudiant.getCin()%>">Supprimer</a></td>
+			href="/biblio/EtudiantHandler?action=delete&cin=<%=etudiant.getCin()%>">Supprimer</a></td>
 
 	</tr>
 	<%
 		}
 	%>
 </table>
-<p><a href="EtudiantHandler?action=insert">Ajouter Etudiant</a></p>
+<p><a href="/biblio/etudiant/newEtudiant.jsp">Ajouter Etudiant</a></p>
+<p><a href="/biblio/index.jsp">Accueil</a></p>
 </body>
 </html>

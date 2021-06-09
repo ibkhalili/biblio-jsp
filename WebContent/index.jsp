@@ -7,6 +7,8 @@
 <title>Gestion Bibliotheque</title>
 </head>
 <body>
-<p><a href="livre.jsp">Ajouter livre</a></p>
+<p><a href="livre/listLivre.jsp">Liste des livres</a> * <a href="livre/newLivre.jsp">Ajouter livre</a></p>
+<p><a href="etudiant/listEtudiant.jsp">Liste des etudiants</a> * <a href="etudiant/newEtudiant.jsp">Ajouter etudiant</a></p>
+<p><a href="emprunt/listEmprunt.jsp">Liste des emprunts</a> * <a href="emprunt/newEmprunt.jsp">Emprunter livre</a></p>
 </body>
 </html>

@@ -17,9 +17,9 @@ public class LivreHandler extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static String INSERT = "/livre.jsp";
-	private static String Edit = "/editLivre.jsp";
-	private static String LivreList = "/listLivre.jsp";
+	private static String INSERT = "/livre/newLivre.jsp";
+	private static String Edit = "/livre/editLivre.jsp";
+	private static String LivreList = "/livre/listLivre.jsp";
 	private LivreDao dao;
 
 	public LivreHandler() {

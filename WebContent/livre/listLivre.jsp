@@ -32,15 +32,16 @@
 		<td><%=livre.getDate_apparition() %></td>
 		<td><%=livre.getStock() %></td>
 		<td><a
-			href="LivreHandler?action=editform&numero=<%=livre.getNumero()%>">Update</a></td>
+			href="/biblio/LivreHandler?action=editform&numero=<%=livre.getNumero()%>">Update</a></td>
 		<td><a
-			href="LivreHandler?action=delete&numero=<%=livre.getNumero()%>">Delete</a></td>
+			href="/biblio/LivreHandler?action=delete&numero=<%=livre.getNumero()%>">Delete</a></td>
 
 	</tr>
 	<%
 		}
 	%>
 </table>
-<p><a href="LivreHandler?action=insert">Ajouter Livre</a></p>
+<p><a href="/biblio/livre/newLivre.jsp">Ajouter Livre</a></p>
+<p><a href="/biblio/index.jsp">Accueil</a></p>
 </body>
 </html>

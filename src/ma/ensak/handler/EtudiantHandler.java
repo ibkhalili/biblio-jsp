@@ -17,9 +17,9 @@ public class EtudiantHandler extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static String INSERT = "/Etudiant.jsp";
-	private static String Edit = "/editEtudiant.jsp";
-	private static String EtudiantList = "/listEtudiant.jsp";
+	private static String INSERT = "/etudiant/newEtudiant.jsp";
+	private static String Edit = "/etudiant/editEtudiant.jsp";
+	private static String EtudiantList = "/etudiant/listEtudiant.jsp";
 	private EtudiantDao dao;
 
 	public EtudiantHandler() {
@@ -30,7 +30,6 @@ public class EtudiantHandler extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String redirect="";
 		String action = request.getParameter("action");
-		System.out.println("action: " + action);
 		try {
 			if(action.equalsIgnoreCase("insert"))
 			{
@@ -54,7 +53,7 @@ public class EtudiantHandler extends HttpServlet {
 				redirect = Edit;            
 			} else if (action.equalsIgnoreCase("edit")){
 				Etudiant etudiant = new Etudiant();
-				etudiant.setNumero(Integer.parseInt(request.getParameter("cin")));
+				etudiant.setCin(request.getParameter("cin"));
 				etudiant.setNom(request.getParameter("nom"));
 				etudiant.setPrenom(request.getParameter("prenom"));
 				etudiant.setFiliere(request.getParameter("filiere"));

@@ -11,5 +11,6 @@ public interface IEtudiantDao {
 	void ajouter(Etudiant e) throws SQLException;
 	void modifier(Etudiant e) throws SQLException;
 	void supprimer(String cin) throws SQLException;
+	Etudiant getEtudiantById(String cin) throws SQLException;
 
 }

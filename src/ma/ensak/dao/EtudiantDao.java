@@ -64,5 +64,23 @@ public class EtudiantDao implements IEtudiantDao {
 		ps.setString(1, cin);
 		ps.executeUpdate();
 	}
+	
+	@Override
+	public Etudiant getEtudiantById(String cin) throws SQLException {
+		Etudiant etudiant = new Etudiant();
+		String query = "SELECT * FROM etudiant WHERE cin=?";
+		PreparedStatement ps = con.prepareStatement(query);
+		ps.setString(1, cin);
+		ResultSet rs = ps.executeQuery();
+
+		if (rs.next()) {
+			etudiant.setCin(rs.getString("cin"));
+			etudiant.setNom(rs.getString("nom"));
+			etudiant.setPrenom(rs.getString("prenom"));
+			etudiant.setFiliere(rs.getString("filiere"));
+		}	
+
+		return etudiant;
+	}
 
 }
