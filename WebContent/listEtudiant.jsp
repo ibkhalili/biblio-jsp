@@ -11,8 +11,8 @@
 </head>
 <body>
 <%
-    EtudiantDao dao = new EtudiantDao();
-	Etudiant<Etudiant> etudiantList = dao.Lister();
+	EtudiantDao dao = new EtudiantDao();
+	List<Etudiant> etudiantList = dao.Lister();
 %>
 <table border="1">
 	<tr>
