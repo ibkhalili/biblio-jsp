@@ -41,14 +41,20 @@ public class EmpruntDao implements IEmpruntDao {
 		PreparedStatement ps = con.prepareStatement(query);
 
 		List<Emprunt> list = getEmpruntByCin(emp.getCin_etudiant());
+		
+		LivreDao livreDao = new LivreDao();			
+		Livre updatedLivre = livreDao.getLivreById(emp.getNumero_livre());
+		
 		int nbrOfBooks = 0;
 		for (int i=0; i < list.size(); i++) {
-			if (list.get(i).getRemis_le() == null)
+			if (list.get(i).getRemis_le() == null) {
 				nbrOfBooks++;
+				if (list.get(i).getCin_etudiant().equals(emp.getCin_etudiant())) {
+					throw new SQLException("L'etudiant a deja emprunter ce livre");
+				}
+			}
 		}
 		if (nbrOfBooks < 3) {
-			LivreDao livreDao = new LivreDao();			
-			Livre updatedLivre = livreDao.getLivreById(emp.getNumero_livre());
 			// check if stock has enough books
 			if (updatedLivre.getStock().intValue() > 0) {
 				ps.setInt(1, emp.getNumero_livre().intValue());
@@ -59,16 +65,9 @@ public class EmpruntDao implements IEmpruntDao {
 				livreDao.modifier(updatedLivre);
 			}
 		}
-		// rs = select * from emprunt where cin_etudiant=emp.getCin_etudiant()
-		// int nbrOfBooks = 0;
-		// loop through rs {
-		// 		if (rs.getDate("remis_le") == NULL) 
-		//			nbrOfBooks++;
-		// }
-		// if (nbrOfBooks < 3) {
-		//		continue and create emprunt;
-		//		decrease stock;
-		// }
+		else {
+			throw new SQLException("L'etudiant a deja emprunter 3 livres");
+		}
 
 	}
 
