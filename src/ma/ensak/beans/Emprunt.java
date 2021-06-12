@@ -54,8 +54,8 @@ public class Emprunt {
 
 	@Override
 	public String toString() {
-		return "Emprunt [numero=" + numero + ", numero_livre=" + numero_livre + ", cin_etudiant=" + cin_etudiant
-				+ ", date=" + date + ", remis_le=" + remis_le + "]";
+		return numero + ", " + numero_livre + ", " + cin_etudiant
+				+ ", " + date + ", " + remis_le;
 	}
 
 }

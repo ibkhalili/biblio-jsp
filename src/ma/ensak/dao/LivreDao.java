@@ -1,5 +1,10 @@
 package ma.ensak.dao;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -8,6 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import ma.ensak.beans.Etudiant;
 import ma.ensak.beans.Livre;
 
 public class LivreDao implements ILivreDao {
@@ -46,6 +52,32 @@ public class LivreDao implements ILivreDao {
 		ps.executeUpdate(); // maybe we want to check the return value
 
 	}
+	
+	@Override
+	public void extraire(String directoryPath) throws SQLException, IOException {
+		// TODO Auto-generated method stub
+		File file = new File(directoryPath);
+
+		if (file.isDirectory()) {
+			PrintWriter writer = new PrintWriter(new FileWriter(directoryPath + "/livre.csv", false));
+
+			writer.println("numero, titre, numero_edition, date_apparition, stock");
+
+			List<Livre> livres = Lister();
+			for (Livre livre : livres) {
+				writer.println(livre.toString());
+			}
+
+			writer.close();
+
+			System.out.println("Livre table extracted successfully !");
+		}
+		else {
+			throw new FileNotFoundException("Directory doesn't exist!!");
+		}
+
+	}
+	
 	@Override
 	public void modifier(Livre l) throws SQLException {
 		// TODO Auto-generated method stub

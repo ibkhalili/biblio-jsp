@@ -26,7 +26,7 @@
 					</tr>
 					<tr>
 						<td>Date</td>
-						<td><input type="text" name="date" /></td>
+						<td><input type="date" name="date" /></td>
 					</tr>
 					<tr>
 						<td></td>

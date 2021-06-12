@@ -56,8 +56,8 @@ public class Livre {
 
 	@Override
 	public String toString() {
-		return "Livre [numero=" + numero + ", titre=" + titre + ", numero_edition=" + numero_edition
-				+ ", date_apparition=" + date_apparition + ", stock=" + stock + "]";
+		return numero + ", " + titre + ", " + numero_edition
+				+ ", " + date_apparition + ", " + stock;
 	}
 	
 }

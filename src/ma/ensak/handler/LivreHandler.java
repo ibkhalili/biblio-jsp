@@ -1,6 +1,7 @@
 package ma.ensak.handler;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
@@ -37,7 +38,8 @@ public class LivreHandler extends HttpServlet {
 				Livre livre = new Livre();
 				livre.setTitre(request.getParameter("titre"));
 				livre.setNumero_edition(request.getParameter("numero_edition"));
-				livre.setDate_apparition(new Date(request.getParameter("date_apparition")));
+				livre.setDate_apparition(new SimpleDateFormat("yyyy-MM-dd")
+						.parse(request.getParameter("date_apparition")));
 				livre.setStock(Integer.parseInt(request.getParameter("stock")));
 				dao.ajouter(livre);
 				redirect = LivreList;
@@ -50,7 +52,14 @@ public class LivreHandler extends HttpServlet {
 				redirect = LivreList;
 				request.setAttribute("livres", dao.Lister());
 				System.out.println("Livre Deleted Successfully");
-			}else if (action.equalsIgnoreCase("editform")){        	
+			} else if (action.equalsIgnoreCase("extraire")) {
+				if (request.getParameter("extraire") != null) {
+					System.out.println("le path: " + request.getParameter("extraire"));
+					dao.extraire(request.getParameter("extraire"));
+				}
+				redirect = LivreList;
+				
+			} else if (action.equalsIgnoreCase("editform")){        	
 				redirect = Edit;            
 			} else if (action.equalsIgnoreCase("edit")){
 				
@@ -59,7 +68,8 @@ public class LivreHandler extends HttpServlet {
 				livre.setNumero(Integer.parseInt(numeroStr));
 				livre.setTitre(request.getParameter("titre"));
 				livre.setNumero_edition(request.getParameter("numero_edition"));
-				livre.setDate_apparition(new Date(request.getParameter("date_apparition")));
+				livre.setDate_apparition(new SimpleDateFormat("yyyy-MM-dd")
+						.parse(request.getParameter("date_apparition")));
 				livre.setStock(Integer.parseInt(request.getParameter("stock")));
 				dao.modifier(livre);
 				request.setAttribute("livre", livre);

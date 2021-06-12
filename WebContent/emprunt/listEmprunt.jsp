@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page import="ma.ensak.beans.Emprunt"%>
 <%@ page import="ma.ensak.dao.EmpruntDao"%>
-<%@ page import="java.util.List"%>
+<%@ page import="java.util.*"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -35,12 +35,10 @@
 			<td><%=emprunt.getDate()%></td>
 			<form method="POST" action='/biblio/EmpruntHandler' name="formRemis">
 			<td  style="display: block; overflow: hidden; padding: 0 0 0 0">
-				<input style="width: 100%; outline: none; border: 0; height: 35px" type="text" name="remis_le" />
+				<input style="width: 100%; outline: none; border: 0; height: 35px" type="date" name="remis_le" />
 			<input type="hidden" name="numero" value="<%=emprunt.getNumero()%>" />
 			<input type="hidden" name="action" value="remis" />
 			</td>
-			<td><a
-				href="/biblio/EmpruntHandler?action=editform&numero=<%=emprunt.getNumero()%>">Update</a></td>
 			<td><input type="submit" value="Remis" /></td>
 			</form>
 		</tr>
@@ -49,6 +47,11 @@
 		}
 		%>
 	</table>
+	<form method="POST" action='/biblio/EmpruntHandler' name="formExtraire">
+		<input style="margin-top: 6px; width: 30%; outline: none; border: 0; height: 35px" type="text" name="extraire" placeholder="Entrez path d'enregistrement" />
+		<input type="hidden" name="action" value="extraire" />
+		<input style="margin-top: 6px; outline: none; border: 0; height: 35px" type="submit" value="Extraire le tableau" />
+	</form>
 <h3><a href="/biblio/emprunt/newEmprunt.jsp">&#8594; Emprunter</a></h3>
 </body>
 </html>

@@ -44,4 +44,11 @@ public class Etudiant {
 		this.cin = cin;
 	}
 
+	@Override
+	public String toString() {
+		return nom + ", " + prenom + ", " + filiere + ", " + cin;
+	}
+	
+	
+
 }

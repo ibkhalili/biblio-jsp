@@ -49,8 +49,15 @@ public class EtudiantHandler extends HttpServlet {
 				redirect = EtudiantList;
 				request.setAttribute("Etudiants", dao.Lister());
 				System.out.println("Etudiant Deleted Successfully");
-			}else if (action.equalsIgnoreCase("editform")){        	
+			} else if (action.equalsIgnoreCase("editform")){        	
 				redirect = Edit;            
+			} else if (action.equalsIgnoreCase("extraire")) {
+				if (request.getParameter("extraire") != null) {
+					System.out.println("le path: " + request.getParameter("extraire"));
+					dao.extraire(request.getParameter("extraire"));
+				}
+				redirect = EtudiantList;
+				
 			} else if (action.equalsIgnoreCase("edit")){
 				Etudiant etudiant = new Etudiant();
 				etudiant.setCin(request.getParameter("cin"));

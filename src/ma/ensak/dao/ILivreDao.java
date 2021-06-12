@@ -1,6 +1,7 @@
 
 package ma.ensak.dao;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -13,5 +14,6 @@ public interface ILivreDao {
 	void modifier(Livre l) throws SQLException;
 	void supprimer(Number numero) throws SQLException;
 	public Livre getLivreById(Number numero) throws SQLException;
+	void extraire(String directoryPath) throws SQLException, IOException;
 
 }

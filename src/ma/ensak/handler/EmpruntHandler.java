@@ -2,6 +2,7 @@
 package ma.ensak.handler;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
@@ -40,36 +41,31 @@ public class EmpruntHandler extends HttpServlet {
 				// emp.setNumero(Integer.parseInt(request.getParameter("numero")));
 				emp.setNumero_livre(Integer.parseInt(request.getParameter("numero_livre")));
 				emp.setCin_etudiant(request.getParameter("cin_etudiant"));
-				emp.setDate(new Date(request.getParameter("date")));
+				emp.setDate(new SimpleDateFormat("yyyy-MM-dd")
+						.parse(request.getParameter("date")));
 				// emp.setRemis_le(new Date(request.getParameter("remis_le")));
 				dao.ajouter(emp);
 				redirect = EmpruntList;
-				request.setAttribute("emprunts", dao.Lister());    
+				request.setAttribute("emprunts", dao.Lister());
 				System.out.println("Emprunt Added Successfully");
 			} else if(action.equalsIgnoreCase("remis")) {
 				String numeroStr = request.getParameter("numero");
 				Emprunt emp = dao.getEmpruntById(Integer.parseInt(numeroStr));
 				if (request.getParameter("remis_le") != null) {
-					emp.setRemis_le(new Date(request.getParameter("remis_le")));
+					// convert date from jsp format to java format
+					emp.setRemis_le(new SimpleDateFormat("yyyy-MM-dd")
+									.parse(request.getParameter("remis_le")));
 					dao.modifier(emp);
 					dao.emprunter(Integer.parseInt(numeroStr));
 				}
 				redirect = EmpruntList;
-			} else if (action.equalsIgnoreCase("editform")){        	
-				redirect = Edit;            
-			} else if (action.equalsIgnoreCase("edit")){
-
-				String numeroStr = request.getParameter("numero");
-				Emprunt emp = new Emprunt();
-				emp.setNumero(Integer.parseInt(numeroStr));
-				emp.setNumero_livre(Integer.parseInt(request.getParameter("numero")));
-				emp.setDate(new Date(request.getParameter("date")));
-				emp.setRemis_le(new Date(request.getParameter("remis_le")));
-				emp.setCin_etudiant(request.getParameter("cin_etudiant"));
-				dao.modifier(emp);
-				request.setAttribute("emprunt", emp);
+			} else if (action.equalsIgnoreCase("extraire")) {
+				if (request.getParameter("extraire") != null) {
+					System.out.println("le path: " + request.getParameter("extraire"));
+					dao.extraire(request.getParameter("extraire"));
+				}
 				redirect = EmpruntList;
-				System.out.println("Emprunt updated Successfully");
+				
 			} else if (action.equalsIgnoreCase("listEmprunt")){
 				redirect = EmpruntList;
 				request.setAttribute("emprunts", dao.Lister());

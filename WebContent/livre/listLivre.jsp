@@ -41,6 +41,11 @@
 		}
 	%>
 </table>
+<form method="POST" action='/biblio/LivreHandler' name="formExtraire">
+		<input style="margin-top: 6px; width: 30%; outline: none; border: 0; height: 35px" type="text" name="extraire" placeholder="Entrez path d'enregistrement" />
+		<input type="hidden" name="action" value="extraire" />
+		<input style="margin-top: 6px; outline: none; border: 0; height: 35px" type="submit" value="Extraire le tableau" />
+</form>
 <p><a href="/biblio/livre/newLivre.jsp">Ajouter Livre</a></p>
 <p><a href="/biblio/index.jsp">Accueil</a></p>
 </body>

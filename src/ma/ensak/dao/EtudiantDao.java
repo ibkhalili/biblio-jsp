@@ -1,5 +1,10 @@
 package ma.ensak.dao;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,6 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import ma.ensak.beans.Emprunt;
 import ma.ensak.beans.Etudiant;
 
 public class EtudiantDao implements IEtudiantDao {
@@ -42,6 +48,31 @@ public class EtudiantDao implements IEtudiantDao {
 		ps.setString(3, e.getPrenom());
 		ps.setString(4, e.getFiliere());
 		ps.executeUpdate(); // maybe we want to check the return value
+	}
+	
+	@Override
+	public void extraire(String directoryPath) throws SQLException, IOException {
+		// TODO Auto-generated method stub
+		File file = new File(directoryPath);
+
+		if (file.isDirectory()) {
+			PrintWriter writer = new PrintWriter(new FileWriter(directoryPath + "/etudiant.csv", false));
+
+			writer.println("nom, prenom, filiere, cin");
+
+			List<Etudiant> etudiants = Lister();
+			for (Etudiant etudiant : etudiants) {
+				writer.println(etudiant.toString());
+			}
+
+			writer.close();
+
+			System.out.println("Etudiant table extracted successfully !");
+		}
+		else {
+			throw new FileNotFoundException("Directory doesn't exist!!");
+		}
+
 	}
 
 	@Override

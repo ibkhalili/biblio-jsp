@@ -1,5 +1,10 @@
 package ma.ensak.dao;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -35,21 +40,46 @@ public class EmpruntDao implements IEmpruntDao {
 	}
 
 	@Override
+	public void extraire(String directoryPath) throws SQLException, IOException {
+		// TODO Auto-generated method stub
+		File file = new File(directoryPath);
+
+		if (file.isDirectory()) {
+			PrintWriter writer = new PrintWriter(new FileWriter(directoryPath + "/emprunt.csv", false));
+
+			writer.println("numero, numero_livre, cin_etudiant, date, remis_le");
+
+			List<Emprunt> emprunts = Lister();
+			for (Emprunt emprunt : emprunts) {
+				writer.println(emprunt.toString());
+			}
+
+			writer.close();
+
+			System.out.println("Emprunt table extracted successfully !");
+		}
+		else {
+			throw new FileNotFoundException("Directory doesn't exist!!");
+		}
+
+	}
+
+	@Override
 	public void ajouter(Emprunt emp) throws SQLException {
 		// TODO Auto-generated method stub
 		String query = "insert into emprunt(numero_livre, cin_etudiant, date) VALUES (?, ?, ?)";
 		PreparedStatement ps = con.prepareStatement(query);
 
 		List<Emprunt> list = getEmpruntByCin(emp.getCin_etudiant());
-		
+
 		LivreDao livreDao = new LivreDao();			
 		Livre updatedLivre = livreDao.getLivreById(emp.getNumero_livre());
-		
+
 		int nbrOfBooks = 0;
 		for (int i=0; i < list.size(); i++) {
 			if (list.get(i).getRemis_le() == null) {
 				nbrOfBooks++;
-				if (list.get(i).getCin_etudiant().equals(emp.getCin_etudiant())) {
+				if (list.get(i).getNumero_livre().equals(emp.getNumero_livre())) {
 					throw new SQLException("L'etudiant a deja emprunter ce livre");
 				}
 			}

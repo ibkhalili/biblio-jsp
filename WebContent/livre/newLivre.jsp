@@ -21,7 +21,7 @@
 	</tr>
 	<tr>
 		<td>date_apparition</td>
-		<td><input type="text" name="date_apparition" /></td>
+		<td><input type="date" name="date_apparition" /></td>
 	</tr>
 	<tr>
 		<td>stock</td>
